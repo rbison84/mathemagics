@@ -21,8 +21,8 @@ export interface IGame {
   playerHand: ICard[];
   computerNumber: number;
   playerNumber: number | null;
-  computerPossibilities: Set<number>;
-  playerPossibilities: Set<number>;
+  computerPossibilities: number[];  // Changed from Set<number>
+  playerPossibilities: number[];    // Changed from Set<number>
   dealInitialHands(): void;
   computerPlayTurn(): {
     card: ICard;
