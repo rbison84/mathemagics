@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2015",  // Changed from "es5" to "es2015"
+    "target": "es2015",
     "lib": [
       "dom",
       "dom.iterable",
@@ -19,7 +19,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "downlevelIteration": true  // Add this line
+    "downlevelIteration": true
   },
   "include": [
     "src"
