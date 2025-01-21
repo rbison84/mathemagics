@@ -14,14 +14,15 @@ export class Game implements IGame {
 
   constructor() {
     this.deck = new Deck();
-    this.computerNumber = Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
+    this.computerNumber = Math.floor(Math.random() * MAX_NUMBER) + 1;
+    // Initialize possibilities arrays with numbers 1 to MAX_NUMBER
     this.computerPossibilities = Array.from(
-      { length: MAX_NUMBER - MIN_NUMBER + 1 }, 
-      (_, i) => i + MIN_NUMBER
+      { length: MAX_NUMBER }, 
+      (_, i) => i + 1
     );
     this.playerPossibilities = Array.from(
-      { length: MAX_NUMBER - MIN_NUMBER + 1 }, 
-      (_, i) => i + MIN_NUMBER
+      { length: MAX_NUMBER }, 
+      (_, i) => i + 1
     );
   }
 
