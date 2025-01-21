@@ -43,8 +43,8 @@ export class Game implements IGame {
       if (card.name.includes('X')) {
         for (let param = MIN_NUMBER; param <= MAX_NUMBER; param++) {
           const remaining = new Set(
-            [...this.playerPossibilities].filter(num => !card.evaluate(num, param))
-          );
+  Array.from(this.playerPossibilities).filter(num => !card.evaluate(num, param))
+);
           const reduction = this.playerPossibilities.size - remaining.size;
           if (reduction > bestReduction) {
             bestReduction = reduction;
