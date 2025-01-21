@@ -9,17 +9,19 @@ export class Game implements IGame {
   playerHand: ICard[] = [];
   computerNumber: number;
   playerNumber: number | null = null;
-  computerPossibilities: Set<number>;
-  playerPossibilities: Set<number>;
+  computerPossibilities: number[];
+  playerPossibilities: number[];
 
   constructor() {
     this.deck = new Deck();
     this.computerNumber = Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER + 1)) + MIN_NUMBER;
-    this.computerPossibilities = new Set(
-      Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER)
+    this.computerPossibilities = Array.from(
+      { length: MAX_NUMBER - MIN_NUMBER + 1 }, 
+      (_, i) => i + MIN_NUMBER
     );
-    this.playerPossibilities = new Set(
-      Array.from({ length: MAX_NUMBER - MIN_NUMBER + 1 }, (_, i) => i + MIN_NUMBER)
+    this.playerPossibilities = Array.from(
+      { length: MAX_NUMBER - MIN_NUMBER + 1 }, 
+      (_, i) => i + MIN_NUMBER
     );
   }
 
@@ -42,10 +44,10 @@ export class Game implements IGame {
 
       if (card.name.includes('X')) {
         for (let param = MIN_NUMBER; param <= MAX_NUMBER; param++) {
-          const remaining = new Set(
-  Array.from(this.playerPossibilities).filter(num => !card.evaluate(num, param))
-);
-          const reduction = this.playerPossibilities.size - remaining.size;
+          const remaining = this.playerPossibilities.filter(
+            num => !card.evaluate(num, param)
+          );
+          const reduction = this.playerPossibilities.length - remaining.length;
           if (reduction > bestReduction) {
             bestReduction = reduction;
             bestCard = card;
@@ -53,10 +55,10 @@ export class Game implements IGame {
           }
         }
       } else {
-        const remaining = new Set(
-          [...this.playerPossibilities].filter(num => !card.evaluate(num, null))
+        const remaining = this.playerPossibilities.filter(
+          num => !card.evaluate(num, null)
         );
-        const reduction = this.playerPossibilities.size - remaining.size;
+        const reduction = this.playerPossibilities.length - remaining.length;
         if (reduction > bestReduction) {
           bestReduction = reduction;
           bestCard = card;
@@ -81,15 +83,14 @@ export class Game implements IGame {
   }
 
   updatePossibilities(forPlayer: boolean, card: ICard, parameter: number | null, result: boolean): void {
-    const possibilities = forPlayer ? this.playerPossibilities : this.computerPossibilities;
-    const newPossibilities = new Set(
-      [...possibilities].filter(num => card.evaluate(num, parameter) === result)
-    );
-    
     if (forPlayer) {
-      this.playerPossibilities = newPossibilities;
+      this.playerPossibilities = this.playerPossibilities.filter(
+        num => card.evaluate(num, parameter) === result
+      );
     } else {
-      this.computerPossibilities = newPossibilities;
+      this.computerPossibilities = this.computerPossibilities.filter(
+        num => card.evaluate(num, parameter) === result
+      );
     }
   }
 }
