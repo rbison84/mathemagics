@@ -104,8 +104,8 @@ const NumberGuessingGame: React.FC = () => {
         }. Result: ${computerMove.result}`;
         setMessage(moveMessage);
 
-        if (game.computerPossibilities.size === 1) {
-          const guess = Array.from(game.computerPossibilities)[0];
+        if (game.computerPossibilities.length === 1) {
+          const guess = game.computerPossibilities[0];
           if (guess === game.playerNumber) {
             setMessage('Computer won! Game Over!');
             setGamePhase('ended');
@@ -179,8 +179,8 @@ const NumberGuessingGame: React.FC = () => {
               {turn === 'player' ? 'Your turn' : 'Computer\'s turn'}
             </p>
             <p className="font-bold mt-2">{message}</p>
-            <p>Your possibilities: {game.playerPossibilities.size} numbers left</p>
-            <p>Computer's possibilities: {game.computerPossibilities.size} numbers left</p>
+            <p>Your possibilities: {game.playerPossibilities.length} numbers left</p>
+            <p>Computer's possibilities: {game.computerPossibilities.length} numbers left</p>
           </div>
 
           <div className="mb-6">
