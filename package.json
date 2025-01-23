@@ -17,8 +17,7 @@
     "typescript": "5.3.3"
   },
   "scripts": {
-    "clean": "rm -rf .parcel-cache dist",
     "start": "parcel public/index.html",
-    "build": "parcel build public/index.html --dist-dir build --public-url ./ && cp -r build/* ."
+    "build": "parcel build public/index.html --dist-dir build --public-url ./ --no-optimize"
   }
 }
