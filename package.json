@@ -2,39 +2,26 @@
   "name": "mathemagics",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@parcel/transformer-typescript-tsc": "^2.11.0",
-    "@types/node": "^20.11.0",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "parcel": "^2.11.0",
-    "parcel-reporter-static-files-copy": "^1.5.3",
-    "@tailwindcss/forms": "^0.5.7",
-    "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.33",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "@parcel/transformer-typescript-tsc": "2.11.0",
+    "@types/react": "18.2.45",
+    "@types/react-dom": "18.2.18",
+    "parcel": "2.11.0",
+    "@tailwindcss/forms": "0.5.7",
+    "autoprefixer": "10.4.17",
+    "postcss": "8.4.33",
+    "tailwindcss": "3.4.1",
+    "typescript": "5.3.3"
   },
   "scripts": {
-    "clean": "rm -rf node_modules .parcel-cache dist package-lock.json",
+    "clean": "rm -rf .parcel-cache dist node_modules",
     "start": "parcel public/index.html",
     "build": "parcel build public/index.html --dist-dir build --public-url ./",
-    "prebuild": "npm run clean && npm install"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "prebuild": "npm run clean"
   }
 }
